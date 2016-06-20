@@ -82,7 +82,7 @@ void main(void)
 	while(1)
 	{
 				sending();
-				delay_ms(500);
+				delay_ms(800);
 				PB_ODR^=0x20;
 						 
 		}

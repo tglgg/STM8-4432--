@@ -948,10 +948,10 @@
 4461  055a               L1732:
 4462                     ; 144              case rs_115k2bps:
 4462                     ; 145                  /* 115.2kbps */
-4462                     ; 146                  UART1_BRR2=0x0b;
-4464  055a 350b5233      	mov	_UART1_BRR2,#11
-4465                     ; 147 		             UART1_BRR1=0x08;
-4467  055e 35085232      	mov	_UART1_BRR1,#8
+4462                     ; 146                  UART1_BRR2=0x01;
+4464  055a 35015233      	mov	_UART1_BRR2,#1
+4465                     ; 147 		             UART1_BRR1=0x01;
+4467  055e 35015232      	mov	_UART1_BRR1,#1
 4468                     ; 148                  time_rs232_back        = rs232_over_115k2bps;
 4470  0562 35020046      	mov	_time_rs232_back,#2
 4471                     ; 149                  break;
@@ -1111,9 +1111,9 @@
 4873  0621 721a5005      	bset	_PB_ODR,#5
 4874                     ; 87 	GREEN_LED_OFF;
 4876  0625 721a500f      	bset	_PD_ODR,#5
-4877                     ; 89 	Init_Rs232(rs_9k6bps,mode_commun);
+4877                     ; 89 	Init_Rs232(rs_115k2bps,mode_commun);
 4879  0629 5f            	clrw	x
-4880  062a a604          	ld	a,#4
+4880  062a a608          	ld	a,#8
 4881  062c 95            	ld	xh,a
 4882  062d cd04c4        	call	_Init_Rs232
 4884                     ; 90 	init_IA4432();
@@ -1139,191 +1139,175 @@
 4914  0651 a604          	ld	a,#4
 4915  0653 cd01b3        	call	_SpiReadRegister
 4917  0656 c70019        	ld	_ItStatus2,a
-4918                     ; 103 					if ( (ItStatus1 & 0x01) == 0x01 )
+4918                     ; 102 					if ( (ItStatus1 & 0x02) == 0x02 )
 4920  0659 c6001a        	ld	a,_ItStatus1
-4921  065c a401          	and	a,#1
-4922  065e a101          	cp	a,#1
-4923  0660 2610          	jrne	L7752
-4924                     ; 106 						SpiWriteRegister(0x08, 0x02);												//write 0x02 to the Operating Function Control 2 register
-4926  0662 ae0002        	ldw	x,#2
-4927  0665 a608          	ld	a,#8
-4928  0667 95            	ld	xh,a
-4929  0668 cd0195        	call	_SpiWriteRegister
-4931                     ; 107 						SpiWriteRegister(0x08, 0x00);												//write 0x00 to the Operating Function Control 2 register
-4933  066b 5f            	clrw	x
-4934  066c a608          	ld	a,#8
-4935  066e 95            	ld	xh,a
-4936  066f cd0195        	call	_SpiWriteRegister
-4938  0672               L7752:
-4939                     ; 113 					if ( (ItStatus1 & 0x02) == 0x02 )
-4941  0672 c6001a        	ld	a,_ItStatus1
-4942  0675 a402          	and	a,#2
-4943  0677 a102          	cp	a,#2
-4944  0679 2643          	jrne	L1062
-4945                     ; 116 						length = SpiReadRegister(0x4B);											//read the Received Packet Length register
-4947  067b a64b          	ld	a,#75
-4948  067d cd01b3        	call	_SpiReadRegister
-4950  0680 c70018        	ld	_length,a
-4951                     ; 118 						if (length < 11)
-4953  0683 c60018        	ld	a,_length
-4954  0686 a10b          	cp	a,#11
-4955  0688 2434          	jruge	L1062
-4956                     ; 121 							for (temp8=0;temp8 < length;temp8++)
-4958  068a 725f0017      	clr	_temp8
-4960  068e 201e          	jra	L1162
-4961  0690               L5062:
-4962                     ; 123 								payload[temp8] = SpiReadRegister(0x7F);						//read the FIFO Access register
-4964  0690 c60017        	ld	a,_temp8
-4965  0693 5f            	clrw	x
-4966  0694 97            	ld	xl,a
-4967  0695 89            	pushw	x
-4968  0696 a67f          	ld	a,#127
-4969  0698 cd01b3        	call	_SpiReadRegister
-4971  069b 85            	popw	x
-4972  069c d70000        	ld	(_payload,x),a
-4973                     ; 124 							  UART1_sendchar(payload[temp8]);
-4975  069f c60017        	ld	a,_temp8
-4976  06a2 5f            	clrw	x
-4977  06a3 97            	ld	xl,a
-4978  06a4 d60000        	ld	a,(_payload,x)
-4979  06a7 cd05b7        	call	_UART1_sendchar
-4981                     ; 121 							for (temp8=0;temp8 < length;temp8++)
-4983  06aa 725c0017      	inc	_temp8
-4984  06ae               L1162:
-4987  06ae c60017        	ld	a,_temp8
-4988  06b1 c10018        	cp	a,_length
-4989  06b4 25da          	jrult	L5062
-4990                     ; 126 							PB_ODR^=0x20;
-4992  06b6 c65005        	ld	a,_PB_ODR
-4993  06b9 a820          	xor	a,	#32
-4994  06bb c75005        	ld	_PB_ODR,a
-4995  06be               L1062:
-4996                     ; 134 					SpiWriteRegister(0x08, 0x02);													//write 0x02 to the Operating Function Control 2 register
-4998  06be ae0002        	ldw	x,#2
-4999  06c1 a608          	ld	a,#8
-5000  06c3 95            	ld	xh,a
-5001  06c4 cd0195        	call	_SpiWriteRegister
-5003                     ; 135 					SpiWriteRegister(0x08, 0x00);													//write 0x00 to the Operating Function Control 2 register
-5005  06c7 5f            	clrw	x
-5006  06c8 a608          	ld	a,#8
-5007  06ca 95            	ld	xh,a
-5008  06cb cd0195        	call	_SpiWriteRegister
-5010                     ; 137 					SpiWriteRegister(0x07, 0x05);													//write 0x05 to the Operating Function Control 1 register
-5012  06ce ae0005        	ldw	x,#5
-5013  06d1 a607          	ld	a,#7
-5014  06d3 95            	ld	xh,a
-5015  06d4 cd0195        	call	_SpiWriteRegister
-5017  06d7 ac330633      	jpf	L1752
-5042                     ; 151 @far @interrupt void TIM4_UPD_OVF_IRQHandler (void)
-5042                     ; 152 {	
-5044                     	switch	.text
-5045  06db               f_TIM4_UPD_OVF_IRQHandler:
-5050                     ; 153       TIM4_SR=0x00;
-5052  06db 725f5344      	clr	_TIM4_SR
-5053                     ; 156       return;
-5056  06df 80            	iret
-5250                     	xdef	f_TIM4_UPD_OVF_IRQHandler
-5251                     	xdef	_main
-5252                     .bit:	section	.data,bit
-5253  0000               _flag_transimit_RF:
-5254  0000 00            	ds.b	1
-5255                     	xdef	_flag_transimit_RF
-5256                     	switch	.bss
-5257  0000               _payload:
-5258  0000 000000000000  	ds.b	10
-5259                     	xdef	_payload
-5260                     	xdef	_Seq
-5261  000a               _testH:
-5262  000a 00            	ds.b	1
-5263                     	xdef	_testH
-5264  000b               _testbuf3:
-5265  000b 00            	ds.b	1
-5266                     	xdef	_testbuf3
-5267  000c               _testbuf2:
-5268  000c 00            	ds.b	1
-5269                     	xdef	_testbuf2
-5270  000d               _testbuf1:
-5271  000d 00            	ds.b	1
-5272                     	xdef	_testbuf1
-5273  000e               _testbuf0:
-5274  000e 00            	ds.b	1
-5275                     	xdef	_testbuf0
-5276                     	xdef	_RxRFbuff
-5277  000f               _rate_rs232:
-5278  000f 00            	ds.b	1
-5279                     	xdef	_rate_rs232
-5280                     	xdef	f_UART1_Recv_IRQHandler
-5281                     	xdef	_UART1_sendchar
-5282                     	xdef	_Wait_Rs232_Rx
-5283                     	xdef	_Wait_Rs232_Tx
-5284                     	xdef	_Init_Rs232
-5285                     	switch	.bit
-5286  0001               _flag_rs232data_check:
-5287  0001 00            	ds.b	1
-5288                     	xdef	_flag_rs232data_check
-5289                     	switch	.bss
-5290  0010               _Format_rs232:
-5291  0010 00            	ds.b	1
-5292                     	xdef	_Format_rs232
-5293                     	xdef	_time_rs232_back
-5294  0011               _time_rs232_over:
-5295  0011 00            	ds.b	1
-5296                     	xdef	_time_rs232_over
-5297  0012               _RxRFbuffPointTail:
-5298  0012 00            	ds.b	1
-5299                     	xdef	_RxRFbuffPointTail
-5300  0013               _RxRFbuffPointHead:
-5301  0013 00            	ds.b	1
-5302                     	xdef	_RxRFbuffPointHead
-5303  0014               _TxRFbuffPointTail:
-5304  0014 00            	ds.b	1
-5305                     	xdef	_TxRFbuffPointTail
-5306  0015               _TxRFbuffPointHead:
-5307  0015 00            	ds.b	1
-5308                     	xdef	_TxRFbuffPointHead
-5309                     	xdef	_TxRFbuff
-5310  0016               _rs232_temp:
-5311  0016 00            	ds.b	1
-5312                     	xdef	_rs232_temp
-5313                     	xdef	_rs232_flag
-5314                     	xdef	_sending
-5315                     	xdef	_init_IA4432
-5316                     	xdef	_SpiReadRegister
-5317                     	xdef	_SpiWriteRegister
-5318                     	xdef	_ByteRead
-5319                     	xdef	_ByteSend
-5320  0017               _temp8:
-5321  0017 00            	ds.b	1
-5322                     	xdef	_temp8
-5323  0018               _length:
-5324  0018 00            	ds.b	1
-5325                     	xdef	_length
-5326  0019               _ItStatus2:
-5327  0019 00            	ds.b	1
-5328                     	xdef	_ItStatus2
-5329  001a               _ItStatus1:
-5330  001a 00            	ds.b	1
-5331                     	xdef	_ItStatus1
-5332  001b               _cal_pll2:
-5333  001b 0000          	ds.b	2
-5334                     	xdef	_cal_pll2
-5335  001d               _cal_pll1:
-5336  001d 0000          	ds.b	2
-5337                     	xdef	_cal_pll1
-5338                     	xdef	_read_buffer
-5339  001f               _testL:
-5340  001f 00            	ds.b	1
-5341                     	xdef	_testL
-5342  0020               _test:
-5343  0020 0000          	ds.b	2
-5344                     	xdef	_test
-5345                     	xdef	_Flag_MASTER
-5346                     	xdef	_SPI_rechar
-5347                     	xdef	_SPI_sendchar
-5348                     	xdef	_SPI_Init
-5349                     	xdef	_Send_led
-5350                     	xdef	_Init_GPIO
-5351                     	xdef	_GPIO
-5352                     	xdef	_delay_us
-5353                     	xdef	_delay_ms
-5373                     	end
+4921  065c a402          	and	a,#2
+4922  065e a102          	cp	a,#2
+4923  0660 2643          	jrne	L7752
+4924                     ; 105 						length = SpiReadRegister(0x4B);											//read the Received Packet Length register
+4926  0662 a64b          	ld	a,#75
+4927  0664 cd01b3        	call	_SpiReadRegister
+4929  0667 c70018        	ld	_length,a
+4930                     ; 107 						if (length < 11)
+4932  066a c60018        	ld	a,_length
+4933  066d a10b          	cp	a,#11
+4934  066f 2434          	jruge	L7752
+4935                     ; 110 							for (temp8=0;temp8 < length;temp8++)
+4937  0671 725f0017      	clr	_temp8
+4939  0675 201e          	jra	L7062
+4940  0677               L3062:
+4941                     ; 112 								payload[temp8] = SpiReadRegister(0x7F);						//read the FIFO Access register
+4943  0677 c60017        	ld	a,_temp8
+4944  067a 5f            	clrw	x
+4945  067b 97            	ld	xl,a
+4946  067c 89            	pushw	x
+4947  067d a67f          	ld	a,#127
+4948  067f cd01b3        	call	_SpiReadRegister
+4950  0682 85            	popw	x
+4951  0683 d70000        	ld	(_payload,x),a
+4952                     ; 113 							  UART1_sendchar(payload[temp8]);
+4954  0686 c60017        	ld	a,_temp8
+4955  0689 5f            	clrw	x
+4956  068a 97            	ld	xl,a
+4957  068b d60000        	ld	a,(_payload,x)
+4958  068e cd05b7        	call	_UART1_sendchar
+4960                     ; 110 							for (temp8=0;temp8 < length;temp8++)
+4962  0691 725c0017      	inc	_temp8
+4963  0695               L7062:
+4966  0695 c60017        	ld	a,_temp8
+4967  0698 c10018        	cp	a,_length
+4968  069b 25da          	jrult	L3062
+4969                     ; 115 							PB_ODR^=0x20;
+4971  069d c65005        	ld	a,_PB_ODR
+4972  06a0 a820          	xor	a,	#32
+4973  06a2 c75005        	ld	_PB_ODR,a
+4974  06a5               L7752:
+4975                     ; 123 					SpiWriteRegister(0x08, 0x02);													//write 0x02 to the Operating Function Control 2 register
+4977  06a5 ae0002        	ldw	x,#2
+4978  06a8 a608          	ld	a,#8
+4979  06aa 95            	ld	xh,a
+4980  06ab cd0195        	call	_SpiWriteRegister
+4982                     ; 124 					SpiWriteRegister(0x08, 0x00);													//write 0x00 to the Operating Function Control 2 register
+4984  06ae 5f            	clrw	x
+4985  06af a608          	ld	a,#8
+4986  06b1 95            	ld	xh,a
+4987  06b2 cd0195        	call	_SpiWriteRegister
+4989                     ; 126 					SpiWriteRegister(0x07, 0x05);													//write 0x05 to the Operating Function Control 1 register
+4991  06b5 ae0005        	ldw	x,#5
+4992  06b8 a607          	ld	a,#7
+4993  06ba 95            	ld	xh,a
+4994  06bb cd0195        	call	_SpiWriteRegister
+4996  06be ac330633      	jpf	L1752
+5021                     ; 134 @far @interrupt void TIM4_UPD_OVF_IRQHandler (void)
+5021                     ; 135 {	
+5023                     	switch	.text
+5024  06c2               f_TIM4_UPD_OVF_IRQHandler:
+5029                     ; 136       TIM4_SR=0x00;
+5031  06c2 725f5344      	clr	_TIM4_SR
+5032                     ; 139       return;
+5035  06c6 80            	iret
+5229                     	xdef	f_TIM4_UPD_OVF_IRQHandler
+5230                     	xdef	_main
+5231                     .bit:	section	.data,bit
+5232  0000               _flag_transimit_RF:
+5233  0000 00            	ds.b	1
+5234                     	xdef	_flag_transimit_RF
+5235                     	switch	.bss
+5236  0000               _payload:
+5237  0000 000000000000  	ds.b	10
+5238                     	xdef	_payload
+5239                     	xdef	_Seq
+5240  000a               _testH:
+5241  000a 00            	ds.b	1
+5242                     	xdef	_testH
+5243  000b               _testbuf3:
+5244  000b 00            	ds.b	1
+5245                     	xdef	_testbuf3
+5246  000c               _testbuf2:
+5247  000c 00            	ds.b	1
+5248                     	xdef	_testbuf2
+5249  000d               _testbuf1:
+5250  000d 00            	ds.b	1
+5251                     	xdef	_testbuf1
+5252  000e               _testbuf0:
+5253  000e 00            	ds.b	1
+5254                     	xdef	_testbuf0
+5255                     	xdef	_RxRFbuff
+5256  000f               _rate_rs232:
+5257  000f 00            	ds.b	1
+5258                     	xdef	_rate_rs232
+5259                     	xdef	f_UART1_Recv_IRQHandler
+5260                     	xdef	_UART1_sendchar
+5261                     	xdef	_Wait_Rs232_Rx
+5262                     	xdef	_Wait_Rs232_Tx
+5263                     	xdef	_Init_Rs232
+5264                     	switch	.bit
+5265  0001               _flag_rs232data_check:
+5266  0001 00            	ds.b	1
+5267                     	xdef	_flag_rs232data_check
+5268                     	switch	.bss
+5269  0010               _Format_rs232:
+5270  0010 00            	ds.b	1
+5271                     	xdef	_Format_rs232
+5272                     	xdef	_time_rs232_back
+5273  0011               _time_rs232_over:
+5274  0011 00            	ds.b	1
+5275                     	xdef	_time_rs232_over
+5276  0012               _RxRFbuffPointTail:
+5277  0012 00            	ds.b	1
+5278                     	xdef	_RxRFbuffPointTail
+5279  0013               _RxRFbuffPointHead:
+5280  0013 00            	ds.b	1
+5281                     	xdef	_RxRFbuffPointHead
+5282  0014               _TxRFbuffPointTail:
+5283  0014 00            	ds.b	1
+5284                     	xdef	_TxRFbuffPointTail
+5285  0015               _TxRFbuffPointHead:
+5286  0015 00            	ds.b	1
+5287                     	xdef	_TxRFbuffPointHead
+5288                     	xdef	_TxRFbuff
+5289  0016               _rs232_temp:
+5290  0016 00            	ds.b	1
+5291                     	xdef	_rs232_temp
+5292                     	xdef	_rs232_flag
+5293                     	xdef	_sending
+5294                     	xdef	_init_IA4432
+5295                     	xdef	_SpiReadRegister
+5296                     	xdef	_SpiWriteRegister
+5297                     	xdef	_ByteRead
+5298                     	xdef	_ByteSend
+5299  0017               _temp8:
+5300  0017 00            	ds.b	1
+5301                     	xdef	_temp8
+5302  0018               _length:
+5303  0018 00            	ds.b	1
+5304                     	xdef	_length
+5305  0019               _ItStatus2:
+5306  0019 00            	ds.b	1
+5307                     	xdef	_ItStatus2
+5308  001a               _ItStatus1:
+5309  001a 00            	ds.b	1
+5310                     	xdef	_ItStatus1
+5311  001b               _cal_pll2:
+5312  001b 0000          	ds.b	2
+5313                     	xdef	_cal_pll2
+5314  001d               _cal_pll1:
+5315  001d 0000          	ds.b	2
+5316                     	xdef	_cal_pll1
+5317                     	xdef	_read_buffer
+5318  001f               _testL:
+5319  001f 00            	ds.b	1
+5320                     	xdef	_testL
+5321  0020               _test:
+5322  0020 0000          	ds.b	2
+5323                     	xdef	_test
+5324                     	xdef	_Flag_MASTER
+5325                     	xdef	_SPI_rechar
+5326                     	xdef	_SPI_sendchar
+5327                     	xdef	_SPI_Init
+5328                     	xdef	_Send_led
+5329                     	xdef	_Init_GPIO
+5330                     	xdef	_GPIO
+5331                     	xdef	_delay_us
+5332                     	xdef	_delay_ms
+5352                     	end

@@ -143,8 +143,8 @@ void    Init_Rs232(u8 rs_rate,u8 mode)
 
              case rs_115k2bps:
                  /* 115.2kbps */
-                 UART1_BRR2=0x0b;
-		             UART1_BRR1=0x08;
+                 UART1_BRR2=0x01;
+		             UART1_BRR1=0x01;
                  time_rs232_back        = rs232_over_115k2bps;
                  break;
 

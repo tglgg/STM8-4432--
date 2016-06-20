@@ -1,0 +1,4 @@
+main.c
+stm8_interrupt_vector.c
+..\system.h
+c:\program files (x86)\cosmic\cxstm8\hstm8\mods0.h

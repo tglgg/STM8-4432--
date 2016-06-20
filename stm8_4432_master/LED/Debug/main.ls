@@ -743,8 +743,8 @@
 4063  0436 a67f          	ld	a,#127
 4064  0438 95            	ld	xh,a
 4065  0439 cd0195        	call	_SpiWriteRegister
-4067                     ; 335 			SpiWriteRegister(0x7F, 0x33);													//write 0x31 ('1') to the FIFO Access register	
-4069  043c ae0033        	ldw	x,#51
+4067                     ; 335 			SpiWriteRegister(0x7F, 0x32);													//write 0x31 ('1') to the FIFO Access register	
+4069  043c ae0032        	ldw	x,#50
 4070  043f a67f          	ld	a,#127
 4071  0441 95            	ld	xh,a
 4072  0442 cd0195        	call	_SpiWriteRegister
@@ -1111,8 +1111,8 @@
 4831  0628               L5552:
 4832                     ; 84 				sending();
 4834  0628 cd03f0        	call	_sending
-4836                     ; 85 				delay_ms(500);
-4838  062b ae01f4        	ldw	x,#500
+4836                     ; 85 				delay_ms(800);
+4838  062b ae0320        	ldw	x,#800
 4839  062e cd0000        	call	_delay_ms
 4841                     ; 86 				PB_ODR^=0x20;
 4843  0631 c65005        	ld	a,_PB_ODR

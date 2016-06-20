@@ -86,7 +86,7 @@ void main(void)
 	RED_LED_OFF;
 	GREEN_LED_OFF;
 	
-	Init_Rs232(rs_9k6bps,mode_commun);
+	Init_Rs232(rs_115k2bps,mode_commun);
 	init_IA4432();
 	while(1)
 	{
@@ -98,18 +98,7 @@ void main(void)
 					//read interrupt status registers
 					ItStatus1 = SpiReadRegister(0x03);											//read the Interrupt Status1 register
 					ItStatus2 = SpiReadRegister(0x04);											//read the Interrupt Status2 register
-
-					/*CRC Error interrupt occured*/
-					if ( (ItStatus1 & 0x01) == 0x01 )
-					{
-						//reset the RX FIFO
-						SpiWriteRegister(0x08, 0x02);												//write 0x02 to the Operating Function Control 2 register
-						SpiWriteRegister(0x08, 0x00);												//write 0x00 to the Operating Function Control 2 register
-						//blink all LEDs to show the error
-						
-						
-					}
-					/*packet received interrupt occured*/
+ 				  /*packet received interrupt occured*/
 					if ( (ItStatus1 & 0x02) == 0x02 )
 					{
 						//Read the length of the received payload
@@ -137,13 +126,7 @@ void main(void)
 					SpiWriteRegister(0x07, 0x05);													//write 0x05 to the Operating Function Control 1 register
 		}
 		
-	}
-	
-	
-	
-	
-	
-        
+	}    
 }
 
 

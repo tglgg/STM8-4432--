@@ -1,5 +1,5 @@
 
-Map of Debug\led.sm8 from link file Debug\led.lkf - Sun Jun 19 12:14:25 2016
+Map of Debug\led.sm8 from link file Debug\led.lkf - Mon Jun 20 22:30:36 2016
 
 
                                --------
@@ -7,7 +7,7 @@ Map of Debug\led.sm8 from link file Debug\led.lkf - Sun Jun 19 12:14:25 2016
                                --------
 
 start 00008080 end 00008080 length     0 segment .const
-start 000080d7 end 00008803 length  1836 segment .text
+start 000080d7 end 000087ea length  1811 segment .text
 start 00004000 end 00004000 length     0 segment .eeprom
 start 00000000 end 00000000 length     0 segment .bsct
 start 00000000 end 00000006 length     6 segment .ubsct
@@ -32,7 +32,7 @@ start 00000148 end 00000148 length     0 section .bss
 start 00000000 end 00000000 length     0 section .ubsct
 
 Debug\main.o:
-start 00008122 end 00008802 length  1760 section .text
+start 00008122 end 000087e9 length  1735 section .text
 start 00000100 end 00000148 length    72 section .data
 start 00000148 end 0000016a length    34 section .bss
 start 00000000 end 00002698 length  9880 section .debug
@@ -45,7 +45,7 @@ start 00000000 end 00000003 length     3 section .ubsct
 start 00000003 end 00000006 length     3 section .ubsct
 
 Debug\stm8_interrupt_vector.o:
-start 00008802 end 00008803 length     1 section .text
+start 000087e9 end 000087ea length     1 section .text
 start 00002698 end 00002803 length   363 section .debug
 start 00008000 end 00008080 length   128 section .const
 
@@ -444,8 +444,8 @@ c_x                         00000000   defined in (C:\Program Files (x86)\COSMIC
                                        used in C:\Program Files (x86)\COSMIC\CXSTM8\Lib\crtsi0.sm8
 c_y                         00000003   defined in (C:\Program Files (x86)\COSMIC\CXSTM8\Lib\libm0.sm8)yreg.o section .ubsct
                                        used in C:\Program Files (x86)\COSMIC\CXSTM8\Lib\crtsi0.sm8
-f_NonHandledInterrupt       00008802   defined in Debug\stm8_interrupt_vector.o section .text
-f_TIM4_UPD_OVF_IRQHandler   000087fd   defined in Debug\main.o section .text
+f_NonHandledInterrupt       000087e9   defined in Debug\stm8_interrupt_vector.o section .text
+f_TIM4_UPD_OVF_IRQHandler   000087e4   defined in Debug\main.o section .text
                                        used in Debug\stm8_interrupt_vector.o
 f_UART1_Recv_IRQHandler     000086e8   defined in Debug\main.o section .text
                                        used in Debug\stm8_interrupt_vector.o

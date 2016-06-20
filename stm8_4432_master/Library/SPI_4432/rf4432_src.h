@@ -332,7 +332,7 @@ void sending(void)
 			SpiWriteRegister(0x7F, 0x54);													//write 0x54 ('T') to the FIFO Access register	
 			SpiWriteRegister(0x7F, 0x4F);													//write 0x4F ('O') to the FIFO Access register	
 			SpiWriteRegister(0x7F, 0x4E);													//write 0x4E ('N') to the FIFO Access register	
-			SpiWriteRegister(0x7F, 0x33);													//write 0x31 ('1') to the FIFO Access register	
+			SpiWriteRegister(0x7F, 0x32);													//write 0x31 ('1') to the FIFO Access register	
 			SpiWriteRegister(0x7F, 0x0D);													//write 0x0D (CR) to the FIFO Access register	
 
 			//Disable all other interrupts and enable the packet sent interrupt only.
