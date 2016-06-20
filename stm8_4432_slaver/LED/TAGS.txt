@@ -1,0 +1,149 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ByteRead	..\library\spi_4432\rf4432_src.h	43;"	function	signature:(void)
+ByteSend	..\library\spi_4432\rf4432_src.h	26;"	function	signature:(Uint8 src)
+C_FIFO_Byte	..\library\ws_firmware\uart1\ws_uart1.h	48;"	macro
+DEF_16BIT_REG_AT	..\include\stm8s103f.h	20;"	macro
+DEF_16BIT_REG_AT	..\include\stm8s103f.h	25;"	macro
+DEF_8BIT_REG_AT	..\include\stm8s103f.h	19;"	macro
+DEF_8BIT_REG_AT	..\include\stm8s103f.h	24;"	macro
+Flag_MASTER	..\library\spi_4432\rf4432.h	3;"	variable
+Format_rs232	main.c	24;"	variable
+GPIO	..\library\ws_firmware\gpio\gpio.h	30;"	variable
+GREEN_LED_OFF	..\library\spi_4432\rf4432_src.h	15;"	macro
+GREEN_LED_ON	..\library\spi_4432\rf4432_src.h	14;"	macro
+IN	..\library\ws_firmware\gpio\gpio.h	28;"	macro
+Init_GPIO	..\library\ws_firmware\gpio\gpio.h	42;"	function	signature:(u8 port,u8 io)
+Init_Rs232	..\library\ws_firmware\uart1\ws_uart1.h	91;"	function	signature:(u8 rs_rate,u8 mode)
+ItStatus1	..\library\spi_4432\rf4432_src.h	17;"	variable
+ItStatus2	..\library\spi_4432\rf4432_src.h	17;"	variable
+LCD_DELAY	..\library\ws_firmware\system.h	50;"	macro
+NonHandledInterrupt	stm8_interrupt_vector.c	13;"	function	signature:(void)
+OUT	..\library\ws_firmware\gpio\gpio.h	27;"	macro
+PA	..\library\ws_firmware\gpio\gpio.h	18;"	macro
+PB	..\library\ws_firmware\gpio\gpio.h	19;"	macro
+PC	..\library\ws_firmware\gpio\gpio.h	20;"	macro
+PD	..\library\ws_firmware\gpio\gpio.h	21;"	macro
+PE	..\library\ws_firmware\gpio\gpio.h	22;"	macro
+PF	..\library\ws_firmware\gpio\gpio.h	23;"	macro
+PG	..\library\ws_firmware\gpio\gpio.h	24;"	macro
+PI	..\library\ws_firmware\gpio\gpio.h	25;"	macro
+RED_LED_OFF	..\library\spi_4432\rf4432_src.h	12;"	macro
+RED_LED_ON	..\library\spi_4432\rf4432_src.h	11;"	macro
+RxRFbuff	main.c	28;"	variable
+RxRFbuffPointHead	main.c	31;"	variable
+RxRFbuffPointTail	main.c	31;"	variable
+SPI_Init	..\library\ws_firmware\spi\ws_spi.h	5;"	function	signature:(void)
+SPI_rechar	..\library\ws_firmware\spi\ws_spi.h	26;"	function	signature:(void)
+SPI_sendchar	..\library\ws_firmware\spi\ws_spi.h	20;"	function	signature:(u8 data)
+STM8S103F	..\include\stm8s103f.h	12;"	macro
+STM8S103F3P	..\include\stm8s103f3p.h	3;"	macro
+Send_led	..\library\ws_firmware\gpio\gpio.h	74;"	function	signature:(u8 port)
+Seq	main.c	40;"	variable
+SpiReadRegister	..\library\spi_4432\rf4432_src.h	104;"	function	signature:(u8 reg)
+SpiWriteRegister	..\library\spi_4432\rf4432_src.h	76;"	function	signature:(u8 reg, u8 value)
+TIM4_UPD_OVF_IRQHandler	main.c	152;"	function	signature:(void)
+TIM4_UPD_OVF_IRQHandler	stm8_interrupt_vector.c	7;"	prototype	file:	signature:(void)
+TxRFbuff	main.c	27;"	variable
+TxRFbuffPointHead	main.c	30;"	variable
+TxRFbuffPointTail	main.c	30;"	variable
+UART1_Recv_IRQHandler	..\library\ws_firmware\uart1\ws_uart1.h	218;"	function	signature:(void)
+UART1_Recv_IRQHandler	stm8_interrupt_vector.c	6;"	prototype	file:	signature:(void)
+UART1_sendchar	..\library\ws_firmware\uart1\ws_uart1.h	212;"	function	signature:(u8 data)
+Uint16	..\library\spi_4432\rf4432_src.h	9;"	macro
+Uint8	..\library\spi_4432\rf4432_src.h	8;"	macro
+Wait_Rs232_Rx	..\library\ws_firmware\uart1\ws_uart1.h	201;"	function	signature:(void)
+Wait_Rs232_Tx	..\library\ws_firmware\uart1\ws_uart1.h	188;"	function	signature:(void)
+_GPIO_H_	..\library\ws_firmware\gpio\gpio.h	16;"	macro
+_SPI_H_	..\library\ws_firmware\spi\ws_spi.h	3;"	macro
+_SYSTEM_H	..\library\ws_firmware\system.h	16;"	macro
+_WS_UART1_H	..\library\ws_firmware\uart1\ws_uart1.h	16;"	macro
+__MODSL0__	c:\program files (x86)\cosmic\cxstm8\hstm8\modsl0.h	8;"	macro
+__STM8S103F__	..\include\stm8s103f.h	6;"	macro
+_stext	stm8_interrupt_vector.c	21;"	prototype	file:
+_vectab	stm8_interrupt_vector.c	23;"	variable
+buff_length	..\library\ws_firmware\uart1\ws_uart1.h	45;"	macro
+cal_pll1	..\library\spi_4432\rf4432.h	14;"	variable
+cal_pll2	..\library\spi_4432\rf4432.h	14;"	variable
+cbi	..\library\ws_firmware\system.h	81;"	macro
+delay_ms	..\library\ws_firmware\system.h	52;"	function	signature:(u16 ms)
+delay_us	..\library\ws_firmware\system.h	65;"	function	signature:(u16 us)
+false	..\library\ws_firmware\uart1\ws_uart1.h	19;"	macro
+flag_rs232data_check	main.c	49;"	variable
+flag_transimit_RF	main.c	51;"	variable
+gbi	..\library\ws_firmware\system.h	83;"	macro
+init_IA4432	..\library\spi_4432\rf4432_src.h	126;"	function	signature:(void)
+interrupt_handler	stm8_interrupt_vector.c	10;"	member	struct:interrupt_vector	file:
+interrupt_handler_t	stm8_interrupt_vector.c	5;"	typedef	file:
+interrupt_instruction	stm8_interrupt_vector.c	9;"	member	struct:interrupt_vector	file:
+interrupt_vector	stm8_interrupt_vector.c	8;"	struct	file:
+length	..\library\spi_4432\rf4432_src.h	18;"	variable
+length	main.c	42;"	variable
+main	main.c	61;"	function	signature:(void)
+mode_commun	..\library\ws_firmware\uart1\ws_uart1.h	32;"	macro
+mode_config	..\library\ws_firmware\uart1\ws_uart1.h	31;"	macro
+payload	main.c	43;"	variable
+point_bottom	..\library\ws_firmware\uart1\ws_uart1.h	47;"	macro
+point_top	..\library\ws_firmware\uart1\ws_uart1.h	46;"	macro
+rate_rs232	main.c	22;"	variable
+read_buffer	main.c	29;"	variable
+rs232_flag	..\library\ws_firmware\uart1\ws_uart1.h	50;"	variable
+rs232_over_115k2bps	..\library\ws_firmware\uart1\ws_uart1.h	41;"	macro
+rs232_over_19k2bps	..\library\ws_firmware\uart1\ws_uart1.h	38;"	macro
+rs232_over_1k2bps	..\library\ws_firmware\uart1\ws_uart1.h	34;"	macro
+rs232_over_2k4bps	..\library\ws_firmware\uart1\ws_uart1.h	35;"	macro
+rs232_over_38k4bps	..\library\ws_firmware\uart1\ws_uart1.h	39;"	macro
+rs232_over_4k8bps	..\library\ws_firmware\uart1\ws_uart1.h	36;"	macro
+rs232_over_57k6bps	..\library\ws_firmware\uart1\ws_uart1.h	40;"	macro
+rs232_over_9k6bps	..\library\ws_firmware\uart1\ws_uart1.h	37;"	macro
+rs232_temp	..\library\ws_firmware\uart1\ws_uart1.h	51;"	variable
+rs_115k2bps	..\library\ws_firmware\uart1\ws_uart1.h	29;"	macro
+rs_19k2bps	..\library\ws_firmware\uart1\ws_uart1.h	26;"	macro
+rs_1k2bps	..\library\ws_firmware\uart1\ws_uart1.h	22;"	macro
+rs_2k4bps	..\library\ws_firmware\uart1\ws_uart1.h	23;"	macro
+rs_38k4bps	..\library\ws_firmware\uart1\ws_uart1.h	27;"	macro
+rs_4k8bps	..\library\ws_firmware\uart1\ws_uart1.h	24;"	macro
+rs_57k6bps	..\library\ws_firmware\uart1\ws_uart1.h	28;"	macro
+rs_9k6bps	..\library\ws_firmware\uart1\ws_uart1.h	25;"	macro
+s16	..\library\ws_firmware\system.h	19;"	typedef
+s32	..\library\ws_firmware\system.h	18;"	typedef
+s8	..\library\ws_firmware\system.h	20;"	typedef
+sbi	..\library\ws_firmware\system.h	79;"	macro
+sc16	..\library\ws_firmware\system.h	23;"	typedef
+sc32	..\library\ws_firmware\system.h	22;"	typedef
+sc8	..\library\ws_firmware\system.h	24;"	typedef
+sending	..\library\spi_4432\rf4432_src.h	309;"	function	signature:(void)
+temp8	..\library\spi_4432\rf4432_src.h	18;"	variable
+temp8	main.c	42;"	variable
+test	main.c	39;"	variable
+testH	main.c	38;"	variable
+testL	main.c	38;"	variable
+testbuf0	main.c	36;"	variable
+testbuf1	main.c	36;"	variable
+testbuf2	main.c	36;"	variable
+testbuf3	main.c	36;"	variable
+time_rs232_back	main.c	33;"	variable
+time_rs232_over	main.c	32;"	variable
+true	..\library\ws_firmware\uart1\ws_uart1.h	18;"	macro
+u16	..\library\ws_firmware\system.h	35;"	typedef
+u32	..\library\ws_firmware\system.h	34;"	typedef
+u8	..\library\ws_firmware\system.h	36;"	typedef
+uc16	..\library\ws_firmware\system.h	39;"	typedef
+uc32	..\library\ws_firmware\system.h	38;"	typedef
+uc8	..\library\ws_firmware\system.h	40;"	typedef
+vs16	..\library\ws_firmware\system.h	27;"	typedef
+vs32	..\library\ws_firmware\system.h	26;"	typedef
+vs8	..\library\ws_firmware\system.h	28;"	typedef
+vsc16	..\library\ws_firmware\system.h	31;"	typedef
+vsc32	..\library\ws_firmware\system.h	30;"	typedef
+vsc8	..\library\ws_firmware\system.h	32;"	typedef
+vu16	..\library\ws_firmware\system.h	43;"	typedef
+vu32	..\library\ws_firmware\system.h	42;"	typedef
+vu8	..\library\ws_firmware\system.h	44;"	typedef
+vuc16	..\library\ws_firmware\system.h	47;"	typedef
+vuc32	..\library\ws_firmware\system.h	46;"	typedef
+vuc8	..\library\ws_firmware\system.h	48;"	typedef
